@@ -1,0 +1,43 @@
+networks:
+  llama-net:
+    driver: bridge
+
+services:
+  ollama:
+    build: .
+    container_name: llama3.1
+    user: root
+    ports:
+      - "11434:11434"
+    networks:
+      - llama-net
+    tty: true
+    deploy:
+      resources:
+        limits:
+          cpus: "0.90"
+          memory: 4G
+
+  backend:
+    build: ./back-end
+    container_name: backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - ollama
+    restart: on-failure
+    environment:
+      - OLLAMA_URL=http://ollama:11434/api/generate
+      - PORT=8000
+    networks:
+      - llama-net
+
+  frontend:
+    build: ./front-end
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - llama-net
