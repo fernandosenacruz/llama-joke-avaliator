@@ -5,18 +5,13 @@ networks:
 services:
   ollama:
     build: .
-    container_name: llama3.1
+    container_name: ollama
     user: root
     ports:
       - "11434:11434"
     networks:
       - llama-net
     tty: true
-    deploy:
-      resources:
-        limits:
-          cpus: "0.90"
-          memory: 4G
 
   backend:
     build: ./back-end
@@ -26,9 +21,8 @@ services:
     depends_on:
       - ollama
     restart: on-failure
-    environment:
-      - OLLAMA_URL=http://ollama:11434/api/generate
-      - PORT=8000
+    env_file:
+      - .env
     networks:
       - llama-net
 

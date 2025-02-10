@@ -1,10 +1,14 @@
 #!/bin/bash
 echo "Iniciando Ollama server"
 
+if [ -f /app/.env ]; then
+  export $(grep -v '^#' /app/.env | xargs)
+fi
+
 ollama serve &
 pid=$!
 sleep 5
-ollama pull llama3.1:8b
+ollama pull ${OLLAMA_MODEL}
 
 while [ "$(ollama list | grep 'NAME')" == "" ]; do
   echo -e "\nAguardando o modelo carregar..."

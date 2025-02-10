@@ -1,8 +1,12 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 import requests
+import json
 import os
+
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
 app = FastAPI()
 
@@ -15,8 +19,7 @@ app.add_middleware(
 )
 
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://ollama:11434/api/generate")
-
-print(OLLAMA_URL)
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
 
 class PromptRequest(BaseModel):
     joke: str
@@ -27,7 +30,6 @@ def read_root():
 
 @app.post("/analyze_joke")
 def analyze_joke(request: PromptRequest):
-
     system_prompt = (
         "Você é um especialista em análise de piadas. Seu único propósito é avaliar piadas enviadas pelos usuários.\n"
         "Se o usuário perguntar algo que não seja uma piada, responda apenas: "
@@ -45,15 +47,21 @@ def analyze_joke(request: PromptRequest):
     )
 
     payload = {
-        "model": "llama3.1:8b",
+        "model": OLLAMA_MODEL,
         "prompt": f"{system_prompt}{request.joke}\nResposta:",
-        "stream": True
+        "stream": False
     }
 
     response = requests.post(OLLAMA_URL, json=payload)
-    print(response.json())
 
-    if response.status_code == 200:
-        return {"response": response.json().get("response", "Erro ao obter resposta.")}
-    else:
-        return {"error": "Erro ao conectar ao Ollama"}
+    try:
+        data = response.json()
+        if response.status_code == 200:
+            return {"response": data.get("response", "Erro ao obter resposta.")}
+        else:
+            return {"error": "Erro ao conectar ao Ollama"}
+
+    except json.decoder.JSONDecodeError as e:
+        print("Erro ao decodicifar JSON", e)
+        print("Resposta bruta", response.text)
+
