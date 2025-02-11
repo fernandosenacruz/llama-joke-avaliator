@@ -78,9 +78,17 @@ Antes de inicializar o projeto, é importante configurar algumas variáveis de a
 
 ## Tecnologias Usadas
 
+### LLM
+
+- [Ollam](https://ollama.com/)
+
 ### Back-end ⚙️
 
 - [Docker](https://www.docker.com/)
 - [Pithin](https://www.python.org/)
+
+### Front-end ⚙️
+
+- [Nextjs](https://nextjs.org/docs)
 </details>
 
