@@ -1,0 +1,95 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    padding: 1rem;
+    align-items: center;
+    height: 100%;
+}
+
+.greeting {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.response_box {
+    flex: 1;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    max-height: 40%;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: justify;
+    white-space: pre-wrap;
+    border-right: 2px solid #fff;
+    animation: typing 3s steps(40, end);
+}
+
+@keyframes typing {
+    from {
+        width: 0ch;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.textarea {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid var(--gray-alpha-100);
+    outline: none;
+    transition: 0.3s;
+    resize: none;
+}
+
+.textarea:focus {
+    border-color: var(--gray-alpha-300);
+    ring: 2px solid var(--gray-alpha-500);
+}
+
+.submit_button {
+    padding: 0.75rem;
+    border-radius: 1rem;
+    background-color: var(--gray-alpha-100);
+    color: var(--gray-alpha-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+
+.submit_button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.submit_button.enabled:hover {
+    background-color: var(--button-primary-hover) !important;
+}
+
+.loader {
+    border-top: 2px solid white;
+    border-radius: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -8,5 +8,5 @@ export const analyzeJoke = async (joke: string) => {
     });
 
     const data = await response.json();
-    return data.response;
+    return data.response.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
 };
