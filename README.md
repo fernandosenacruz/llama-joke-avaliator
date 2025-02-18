@@ -80,7 +80,7 @@ Antes de inicializar o projeto, é importante configurar algumas variáveis de a
 
 ### LLM
 
-- [Ollam](https://ollama.com/)
+- [Ollama](https://ollama.com/)
 
 ### Back-end ⚙️
 
