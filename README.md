@@ -85,7 +85,7 @@ Antes de inicializar o projeto, é importante configurar algumas variáveis de a
 ### Back-end ⚙️
 
 - [Docker](https://www.docker.com/)
-- [Pithin](https://www.python.org/)
+- [Python](https://www.python.org/)
 
 ### Front-end ⚙️
 
