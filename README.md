@@ -34,7 +34,7 @@ Antes de inicializar o projeto, é importante configurar algumas variáveis de a
   - Crie o arquivo `.env` com as variáveis de ambiente indicadas:
   ```
     OLLAMA_URL=http://ollama:11434/api/generate
-    OLLAMA_MODEL=set_ollama_model // example: llama3.1:8b
+    OLLAMA_MODEL=set_ollama_model // example: deepseek-r1:8b
   ```
   > Apague os comentários indicados `// ...` ao lado do valor da variável
 
@@ -47,8 +47,8 @@ Antes de inicializar o projeto, é importante configurar algumas variáveis de a
 
   **Obs**
   - Atenção!
-  - Este é um projeto demanda espaço de armazenamento grande a depender do modelo escolhido.
-  - Este projeto demanda um tempo relativamente longo para execução pois será necessário baixar imagens que varia de acordo com a conexão com a internet.
+  - Este é um projeto que demanda um espaço de armazenamento grande a depender do modelo escolhido.
+  - Este projeto demanda um tempo relativamente longo para execução pois será necessário baixar imagens docker que varia de acordo com a conexão com a internet.
   - Este projeto estará pronto para teste quando o console exibir as seguintes mensagens:
     ```
       backend   | INFO:     Application startup complete.
@@ -68,11 +68,11 @@ Antes de inicializar o projeto, é importante configurar algumas variáveis de a
 
 ### Como Testar
   - Acesse no seu navegador ```http://localhost:3000/```
-  - Escreva uma piada para ser avaliada e clique no botão 'Analisar'
+  - Escreva uma piada para ser avaliada e clique no botão de send para analisar
   - Aguarde a resposta do LLM
 
   ***Obs**
-  - O tempo de resposta do avaliador varia de acordo com a capacidade de processamento de seu computador. Caso não possua uma GPU o tempo de resposta será ainda maiior.
+  - O tempo de resposta do avaliador varia de acordo com a capacidade de processamento de seu computador. Caso não possua uma GPU o tempo de resposta será ainda maior.
 
 </details>
 
